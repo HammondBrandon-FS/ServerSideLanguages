@@ -15,11 +15,18 @@
 # Hint: Think about the order in which if/elseif/else evaluates your conditions. Do you test for an "A" condition first and work your way down, or test for "F" and work your way up?
 # Show errors in command line if there are any.
 
+import math
 class Grader:
     def __init__(self):
         self.name = raw_input("What is your name? ")
         self.assignment = raw_input("What is the name of the assignment? ")
-        self.grade = float(raw_input("What is your number grade? "))
+        while True:
+            try:
+                self.grade = raw_input("What is your number grade? ")
+                self.grade = float(self.grade)
+                break
+            except ValueError:
+                print("Not a valid number. Please try again.")
 
     def getGrade(self):
         letter = "N/A"
