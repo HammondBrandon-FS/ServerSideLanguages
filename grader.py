@@ -14,3 +14,29 @@
 # 5. 102.1
 # Hint: Think about the order in which if/elseif/else evaluates your conditions. Do you test for an "A" condition first and work your way down, or test for "F" and work your way up?
 # Show errors in command line if there are any.
+
+class Grader:
+    def __init__(self):
+        self.name = raw_input("What is your name? ")
+        self.assignment = raw_input("What is the name of the assignment? ")
+        self.grade = float(raw_input("What is your number grade? "))
+
+    def getGrade(self):
+        letter = "N/A"
+        if self.grade <= 100 and self.grade >= 90:
+            letter = "A"
+        elif self.grade < 90 and self.grade >= 80:
+            letter = "B"
+        elif self.grade < 80 and self.grade >= 70:
+            letter = "C"
+        elif self.grade < 70 and self.grade >= 60:
+            letter = "D"
+        elif self.grade > 100:
+            return self.name + " you got bonus points, but still an A."
+        else:
+            letter = "F"
+        
+        return self.name + " you made a " + letter + " on your " + self.assignment + " assignment."
+
+grades = Grader()
+print(grades.getGrade())
