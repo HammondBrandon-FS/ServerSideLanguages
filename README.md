@@ -2,9 +2,9 @@
 ## Brandon Hammond
 
 ### Objectives:
-[x] Complete python grader file
-[x] Complete ruby grader file
-[x] Complete node.js grader file
+    [x] Complete python grader file.
+    [x] Complete ruby grader file.
+    [x] Complete node.js grader file.
 ---
 Main Branch:
 - Working files
