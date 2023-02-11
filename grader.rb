@@ -16,7 +16,9 @@
 # Show errors in command line if there are any.
 
 class Grader
+    # Constructor
     def initialize()
+        # Get answers to questions and save them into variables
         puts "What is your name? "
         @name = gets
 
@@ -24,11 +26,14 @@ class Grader
         @assignment = gets
 
         puts "What is your number grade? "
+        # Convert the grade to a float
         @grade = gets.to_f
     end
 
+    # Convert grade to letter grade
     def getLetter()
         letter = ""
+        # Determine letter grade based on grade value
         if @grade >= 90
             letter = "A"
         elsif @grade >= 80
@@ -40,9 +45,12 @@ class Grader
         else
             letter = "F"
         end
+        # Output results
         puts @name + " your made a " + letter + " on " + @assignment
     end
 end
 
+# New instance of grader class
 grades = Grader.new
+# Run the getLetter method
 print(grades.getLetter())

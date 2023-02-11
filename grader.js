@@ -16,16 +16,21 @@
 // Show errors in command line if there are any.
 
 class Grader{
+    // Constructor
     constructor() {
+        // Set up read line interface
         const rl = require('readline').createInterface({
             input: process.stdin,
             output: process.stdout,
         });
 
+        // Ask questions and store them in variables
         rl.question("What is your name? ",(name)=>{
             rl.question("What is the name of the assignment? ",(assignment)=>{
                 rl.question("What is your number grade? ",(grade)=>{
+                    // Parse grade to float
                     grade = parseFloat(grade);
+                    // Send answers to displayGrade method
                     this.displayGrade(name, assignment, grade);
                     rl.close();
                 })
@@ -34,6 +39,7 @@ class Grader{
         })
     }
 
+    // Method for converting number grade to letter grade
     displayGrade(n,a,g) {
         let letter;
         if (g >= 90) {
@@ -51,8 +57,10 @@ class Grader{
         else {
             letter = "F";
         }
+        // Display results
         console.log(n + " you made a " + letter + " on " + a);
     }
 }
 
+// Instantiate grader class
 let grades = new Grader()
