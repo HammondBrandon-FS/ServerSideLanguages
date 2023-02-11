@@ -14,3 +14,35 @@
 # 5. 102.1
 # Hint: Think about the order in which if/elseif/else evaluates your conditions. Do you test for an "A" condition first and work your way down, or test for "F" and work your way up?
 # Show errors in command line if there are any.
+
+class Grader
+    def initialize()
+        puts "What is your name? "
+        @name = gets
+
+        puts "What is the name of the assignment? "
+        @assignment = gets
+
+        puts "What is your number grade? "
+        @grade = gets.to_f
+    end
+
+    def getLetter()
+        letter = ""
+        if @grade >= 90
+            letter = "A"
+        elsif @grade >= 80
+            letter = "B"
+        elsif @grade >= 70
+            letter = "C"
+        elsif @grade >= 60
+            letter = "D"
+        else
+            letter = "F"
+        end
+        puts @name + " your made a " + letter + " on " + @assignment
+    end
+end
+
+grades = Grader.new
+print(grades.getLetter())
