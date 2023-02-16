@@ -1,0 +1,39 @@
+<!-- form.ejs -->
+<form action="/submit" method="POST">
+    <!-- Text inputs -->
+    <input type="text" name="fname" placeholder="First Name">
+    <input type="text" name="lname" placeholder="Last Name">
+    <input type="text" name="city" placeholder="City">
+    <input type="text" name="state" placeholder="State">
+    <!-- Number input -->
+    <input type="number" name="zip" placeholder="Zip code">
+    <!-- Age dropdown -->
+    <label for="age">Age:</label>
+    <select name="age" id="age">
+        <option value="child">10-20</option>
+        <option value="young">20-30</option>
+        <option value="old">30-40</option>
+        <option value="ancient">40-50</option>
+        <option value="geriatric">50+</option>
+    </select>
+    <!-- Gender radio -->
+    <fieldset>
+        <legend>Gender:</legend>
+        <div>
+            <input type="radio" id="genderChoice1" name="gender" value="male" />
+            <label for="genderChoice1">Male</label>
+    
+            <input type="radio" id="genderChoice2" name="gender" value="female" />
+            <label for="genderChoice2">Female</label>
+        </div>
+    </fieldset>
+    <!-- Consent checkbox -->
+    <div>
+        <label for="consent">Consent to use this information?</label>
+        <input type="checkbox" id="consent" name="consent" value="yes" />
+    </div>
+    <!-- Bio textarea -->
+    <textarea name="bio" placeholder="Short Bio Here"></textarea>
+    <!-- Submit -->
+    <input type="submit">
+</form>

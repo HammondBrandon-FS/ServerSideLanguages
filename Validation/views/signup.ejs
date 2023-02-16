@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- Brandon Hammond - Week 3 Validation Assignment -->
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="form validation on server side" />
+        <meta name="author" content="Brandon Hammond" />
+        <title>Validation - Week 3 Assignment</title>
+        <link href="/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation -->
+        <%- include("partials/nav")%>
+
+        <%if(typeof(errors)!="undefined"){%>
+            <%for(x in errors){%>
+                <br><span><%= errors[x]%></span>
+            <%}%>
+        <%}%>
+
+        <!-- Page Header-->
+        <header>
+            <h2>I want to work with you!</h2>
+        </header>
+        <!-- Main Content-->
+        <%- include("partials/form")%>
+
+        <!-- Footer-->
+        <footer>
+
+        </footer>
+
+    </body>
+</html>
