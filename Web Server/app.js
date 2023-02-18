@@ -17,17 +17,42 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.engine("ejs",require("ejs").__express);
 
+// Express sessions
+const session = require("express-session");
+app.use(session({secret:"secret",saveUninitialized:true,resave:true}));
+var sess;
+
 
 router.get("/",function(req,res){
-
-    res.render("index",{pagename:"Home"}); // views/index.ejs
+    sess = req.session;
+    res.render("index",{pagename:"Home",sess:sess}); // views/index.ejs
 
 });
 
 router.get("/about",function(req,res){
+    sess = req.session;
+    res.render("about",{pagename:"About",sess:sess}); // views/about.ejs
 
-    res.render("about",{pagename:"About"}); // views/about.ejs
+});
 
+// Profile page
+router.get("/profile",function(req,res){
+    sess = req.session;
+    if(typeof(sess)!="undefined" || sess.loggedin != true) {
+        var errors = ["Not authenticated user"];
+        res.render("index",{pagename:"Home",errors:errors});
+    } else {
+        res.render("profile",{pagename:"Profile",sess:sess});
+    }
+
+});
+
+// Logout method
+router.get("/logout", function(req,res){
+    sess = req.session;
+    sess.destroy(function(err){
+        res.redirect("/");
+    });
 });
 
 router.post("/login",function(req,res){
@@ -49,8 +74,13 @@ router.post("/login",function(req,res){
         errors.push("Password is not valid.");
     }
 
+    // write conditional here matching user/pass
+    sess = req.session;
+    sess.loggedin = true;
+    res.render("profile",{pagename:"Profile",sess:sess});
 
-    res.render("index",{pagename:"Home",errors:errors});
+
+    //res.render("index",{pagename:"Home",errors:errors});
 });
 
 
