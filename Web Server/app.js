@@ -25,12 +25,14 @@ var sess;
 
 router.get("/",function(req,res){
     sess = req.session;
+    console.log(sess);
     res.render("index",{pagename:"Home",sess:sess}); // views/index.ejs
 
 });
 
 router.get("/about",function(req,res){
     sess = req.session;
+    console.log(sess);
     res.render("about",{pagename:"About",sess:sess}); // views/about.ejs
 
 });
@@ -38,7 +40,8 @@ router.get("/about",function(req,res){
 // Profile page
 router.get("/profile",function(req,res){
     sess = req.session;
-    if(typeof(sess)!="undefined" || sess.loggedin != true) {
+    console.log(sess);
+    if(typeof(sess)=="undefined" || sess.loggedin != true) {
         var errors = ["Not authenticated user"];
         res.render("index",{pagename:"Home",errors:errors});
     } else {
@@ -50,14 +53,15 @@ router.get("/profile",function(req,res){
 // Logout method
 router.get("/logout", function(req,res){
     sess = req.session;
+    console.log(sess);
     sess.destroy(function(err){
         res.redirect("/");
     });
 });
 
 router.post("/login",function(req,res){
-    //console.log(req.body.email);
-    //console.log(req.body.password);
+    sess = req.session;
+    console.log(sess);
     let errors=[];
     if(req.body.email == ""){
         errors.push("Email is required.");
@@ -75,12 +79,14 @@ router.post("/login",function(req,res){
     }
 
     // write conditional here matching user/pass
-    sess = req.session;
-    sess.loggedin = true;
-    res.render("profile",{pagename:"Profile",sess:sess});
-
-
-    //res.render("index",{pagename:"Home",errors:errors});
+    if(req.body.email == "Mike@aol.com" && req.body.password == "abc123"){
+        sess.loggedin = true;
+        res.render("profile",{pagename:"Profile",sess:sess});
+    }else{
+        sess.loggedin = false;
+        res.render("index",{pagename:"Home",errors:errors, sess:sess});
+    }
+    
 });
 
 
